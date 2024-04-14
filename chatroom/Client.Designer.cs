@@ -40,6 +40,7 @@
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.btnSendImage = new System.Windows.Forms.Button();
             this.grbMessage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             // 
             // grbMessage
             // 
+            this.grbMessage.Controls.Add(this.btnSendImage);
             this.grbMessage.Controls.Add(this.btnSend);
             this.grbMessage.Controls.Add(this.txtMessage);
             this.grbMessage.Controls.Add(this.btnExit);
@@ -76,7 +78,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(521, 21);
+            this.btnSend.Location = new System.Drawing.Point(521, 50);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
             this.btnSend.TabIndex = 1;
@@ -94,7 +96,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(521, 67);
+            this.btnExit.Location = new System.Drawing.Point(521, 79);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 7;
@@ -150,7 +152,17 @@
             this.txtUsername.Size = new System.Drawing.Size(100, 22);
             this.txtUsername.TabIndex = 13;
             // 
-            // frmClient
+            // btnSendImage
+            // 
+            this.btnSendImage.Location = new System.Drawing.Point(521, 21);
+            this.btnSendImage.Name = "btnSendImage";
+            this.btnSendImage.Size = new System.Drawing.Size(75, 23);
+            this.btnSendImage.TabIndex = 14;
+            this.btnSendImage.Text = "Image";
+            this.btnSendImage.UseVisualStyleBackColor = true;
+            this.btnSendImage.Click += new System.EventHandler(this.btnSendImage_Click);
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,7 +176,7 @@
             this.Controls.Add(this.grbMessage);
             this.Controls.Add(this.lstChatBox);
             this.Controls.Add(this.btnConnect);
-            this.Name = "frmClient";
+            this.Name = "Form1";
             this.Text = "TCP Client";
             this.grbMessage.ResumeLayout(false);
             this.grbMessage.PerformLayout();
@@ -186,6 +198,7 @@
         private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Button btnSendImage;
     }
 }
 

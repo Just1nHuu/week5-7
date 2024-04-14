@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace chatroom
 {
@@ -113,7 +114,7 @@ namespace chatroom
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string messageWithEmojis = ReplaceEmojis(txtMessage.Text); // Thay thế emojis
+            string messageWithEmojis = ReplaceEmojis(txtMessage.Text); // Thay thế emojis`
             NetworkStream net_stream = tcpClient.GetStream();
             byte[] message = Encoding.UTF8.GetBytes(txtMessage.Text);
             net_stream.Write(message, 0, message.Length);
@@ -127,6 +128,27 @@ namespace chatroom
             clientThread = null;
             tcpClient.Close();
             UpdateChatHistorySafeCall(null, "Disconnected now...");
+        }
+
+
+
+        private void SendImage(string imagePath)
+        {
+            NetworkStream net_stream = tcpClient.GetStream();
+            byte[] imageBytes = File.ReadAllBytes(imagePath);
+            net_stream.Write(imageBytes, 0, imageBytes.Length);
+            net_stream.Flush();
+        }
+
+        private void btnSendImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string imagePath = openFileDialog.FileName;
+                SendImage(imagePath);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace chatroom
 {
@@ -115,6 +116,39 @@ namespace chatroom
             }
         }
 
+
+        private bool IsImage(byte[] data, int length)
+        {
+            // Kiểm tra theo header của hình ảnh, bạn có thể sử dụng các thư viện xử lý hình ảnh để kiểm tra chính xác hơn
+            // Đoạn mã sau chỉ là ví dụ đơn giản
+            string[] imageHeaders = { "FFD8", "89504E47", "47494638" };
+            string header = BitConverter.ToString(data, 0, 4).Replace("-", "");
+
+            return imageHeaders.Contains(header);
+        }
+
+        private string SaveImage(byte[] data, int length)
+        {
+            string imagePath = Path.Combine(Application.StartupPath, $"image_{DateTime.Now.Ticks}.png");
+            File.WriteAllBytes(imagePath, data);
+            return imagePath;
+        }
+
+        private void BroadcastImage(string username, string imagePath, TcpClient except_this_client)
+        {
+            byte[] message = Encoding.UTF8.GetBytes($"[Image] {imagePath}");
+            foreach (TcpClient client in dic_clients.Values)
+            {
+                if (client != except_this_client)
+                {
+                    NetworkStream net_stream = client.GetStream();
+                    net_stream.Write(message, 0, message.Length);
+                    net_stream.Flush();
+                }
+            }
+        }
+
+
         private void Receive(object obj)
         {
             string username = obj.ToString();
@@ -126,10 +160,19 @@ namespace chatroom
                 while (listening)
                 {
                     int byte_count = net_stream.Read(data, 0, data.Length);
-                    string message = Encoding.UTF8.GetString(data, 0, byte_count);
-                    message = ReplaceEmojis(message); // Thay thế emojis
-                    Broadcast(username, message, client);
-                    UpdateChatHistorySafeCall(username, message);
+                    if (IsImage(data, byte_count))
+                    {
+                        string imagePath = SaveImage(data, byte_count);
+                        BroadcastImage(username, imagePath, client);
+                        UpdateChatHistorySafeCall(username, $"[Image] {imagePath}");
+                    }
+                    else
+                    {
+                        string message = Encoding.UTF8.GetString(data, 0, byte_count);
+                        message = ReplaceEmojis(message); // Thay thế emojis
+                        Broadcast(username, message, client);
+                        UpdateChatHistorySafeCall(username, message);
+                    }
                     if (byte_count == 0)
                     {
                         listening = false;
