@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace chatroom
 {
     public partial class Server : Form
@@ -81,14 +82,16 @@ namespace chatroom
                 tcpServer = new TcpListener(IPAddress.Any, int.Parse(txtServerPort.Text));
             }
         }
-        private void Broadcast(string username, byte[] data, TcpClient except_this_client)
+
+        private void Broadcast(string username, string message, TcpClient except_this_client)
         {
+            byte[] flooding_message = Encoding.UTF8.GetBytes($"{username}: {message}");
             foreach (TcpClient client in dic_clients.Values)
             {
                 if (client != except_this_client)
                 {
                     NetworkStream net_stream = client.GetStream();
-                    net_stream.Write(data, 0, data.Length);
+                    net_stream.Write(flooding_message, 0, flooding_message.Length);
                     net_stream.Flush();
                 }
             }
@@ -104,39 +107,11 @@ namespace chatroom
             {
                 while (listening)
                 {
-                    // Read the type of the message
-                    byte[] typeBytes = new byte[1];
-                    net_stream.Read(typeBytes, 0, typeBytes.Length);
-                    byte type = typeBytes[0];
-
-                    if (type == 0) // Text message
-                    {
-                        int byte_count = net_stream.Read(data, 0, data.Length);
-                        string message = Encoding.UTF8.GetString(data, 0, byte_count);
-                        Broadcast(username, Encoding.UTF8.GetBytes($"{username}: {message}"), client);
-                        UpdateChatHistorySafeCall(username, message);
-                    }
-                    else if (type == 1) // Image message
-                    {
-                        // Read the size of the image
-                        byte[] imageSizeBytes = new byte[4]; // Assuming the size is sent as an Int32
-                        net_stream.Read(imageSizeBytes, 0, imageSizeBytes.Length);
-                        int imageSize = BitConverter.ToInt32(imageSizeBytes, 0);
-
-                        // Read the image data
-                        byte[] imageData = new byte[imageSize];
-                        net_stream.Read(imageData, 0, imageData.Length);
-
-                        // Broadcast the image to all other clients
-                        byte[] dataToSend = new byte[1 + imageSizeBytes.Length + imageData.Length];
-                        dataToSend[0] = 1; // Image type
-                        imageSizeBytes.CopyTo(dataToSend, 1);
-                        imageData.CopyTo(dataToSend, 1 + imageSizeBytes.Length);
-                        Broadcast(username, dataToSend, client);
-                        UpdateChatHistorySafeCall(username, "Sent an image");
-                    }
-
-                    if (data.Length == 0)
+                    int byte_count = net_stream.Read(data, 0, data.Length);
+                    string message = Encoding.UTF8.GetString(data, 0, byte_count);
+                    Broadcast(username, message, client);
+                    UpdateChatHistorySafeCall(username, message);
+                    if (byte_count == 0)
                     {
                         listening = false;
                     }
@@ -149,8 +124,6 @@ namespace chatroom
                 MessageBox.Show($"-----Connection from {username} closed-----");
             }
         }
-
-
 
         private void btnListen_Click(object sender, EventArgs e)
         {

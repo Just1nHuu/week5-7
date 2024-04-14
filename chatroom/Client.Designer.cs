@@ -48,7 +48,7 @@
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(402, 32);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(56, 19);
             this.btnConnect.TabIndex = 2;
@@ -64,9 +64,9 @@
             this.grbMessage.Controls.Add(this.txtMessage);
             this.grbMessage.Controls.Add(this.btnExit);
             this.grbMessage.Location = new System.Drawing.Point(11, 249);
-            this.grbMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grbMessage.Margin = new System.Windows.Forms.Padding(2);
             this.grbMessage.Name = "grbMessage";
-            this.grbMessage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grbMessage.Padding = new System.Windows.Forms.Padding(2);
             this.grbMessage.Size = new System.Drawing.Size(464, 89);
             this.grbMessage.TabIndex = 6;
             this.grbMessage.TabStop = false;
@@ -75,7 +75,7 @@
             // Emoji
             // 
             this.Emoji.Location = new System.Drawing.Point(87, 63);
-            this.Emoji.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Emoji.Margin = new System.Windows.Forms.Padding(2);
             this.Emoji.Name = "Emoji";
             this.Emoji.Size = new System.Drawing.Size(78, 22);
             this.Emoji.TabIndex = 8;
@@ -85,7 +85,7 @@
             // SelectImage
             // 
             this.SelectImage.Location = new System.Drawing.Point(4, 62);
-            this.SelectImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SelectImage.Margin = new System.Windows.Forms.Padding(2);
             this.SelectImage.Name = "SelectImage";
             this.SelectImage.Size = new System.Drawing.Size(78, 22);
             this.SelectImage.TabIndex = 8;
@@ -96,7 +96,7 @@
             // btnSend
             // 
             this.btnSend.Location = new System.Drawing.Point(391, 17);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(2);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(56, 19);
             this.btnSend.TabIndex = 1;
@@ -107,7 +107,7 @@
             // txtMessage
             // 
             this.txtMessage.Location = new System.Drawing.Point(4, 17);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(366, 41);
@@ -116,7 +116,7 @@
             // btnExit
             // 
             this.btnExit.Location = new System.Drawing.Point(391, 41);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(56, 19);
             this.btnExit.TabIndex = 7;
@@ -147,7 +147,7 @@
             // txtServerIP
             // 
             this.txtServerIP.Location = new System.Drawing.Point(84, 12);
-            this.txtServerIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtServerIP.Margin = new System.Windows.Forms.Padding(2);
             this.txtServerIP.Name = "txtServerIP";
             this.txtServerIP.Size = new System.Drawing.Size(76, 20);
             this.txtServerIP.TabIndex = 10;
@@ -155,7 +155,7 @@
             // txtServerPort
             // 
             this.txtServerPort.Location = new System.Drawing.Point(84, 49);
-            this.txtServerPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtServerPort.Margin = new System.Windows.Forms.Padding(2);
             this.txtServerPort.Name = "txtServerPort";
             this.txtServerPort.Size = new System.Drawing.Size(76, 20);
             this.txtServerPort.TabIndex = 11;
@@ -173,7 +173,7 @@
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(277, 33);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(76, 20);
             this.txtUsername.TabIndex = 13;
@@ -203,7 +203,7 @@
             this.Controls.Add(this.lblServerIP);
             this.Controls.Add(this.grbMessage);
             this.Controls.Add(this.btnConnect);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "TCP Client";
             this.grbMessage.ResumeLayout(false);
