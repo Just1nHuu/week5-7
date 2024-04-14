@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.btnConnect = new System.Windows.Forms.Button();
-            this.lstChatBox = new System.Windows.Forms.ListBox();
             this.grbMessage = new System.Windows.Forms.GroupBox();
+            this.Emoji = new System.Windows.Forms.Button();
+            this.SelectImage = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grbMessage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,17 +55,10 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // lstChatBox
-            // 
-            this.lstChatBox.FormattingEnabled = true;
-            this.lstChatBox.ItemHeight = 16;
-            this.lstChatBox.Location = new System.Drawing.Point(15, 119);
-            this.lstChatBox.Name = "lstChatBox";
-            this.lstChatBox.Size = new System.Drawing.Size(618, 164);
-            this.lstChatBox.TabIndex = 5;
-            // 
             // grbMessage
             // 
+            this.grbMessage.Controls.Add(this.Emoji);
+            this.grbMessage.Controls.Add(this.SelectImage);
             this.grbMessage.Controls.Add(this.btnSend);
             this.grbMessage.Controls.Add(this.txtMessage);
             this.grbMessage.Controls.Add(this.btnExit);
@@ -73,6 +68,25 @@
             this.grbMessage.TabIndex = 6;
             this.grbMessage.TabStop = false;
             this.grbMessage.Text = "Message";
+            // 
+            // Emoji
+            // 
+            this.Emoji.Location = new System.Drawing.Point(116, 77);
+            this.Emoji.Name = "Emoji";
+            this.Emoji.Size = new System.Drawing.Size(104, 27);
+            this.Emoji.TabIndex = 8;
+            this.Emoji.Text = "Emoji";
+            this.Emoji.UseVisualStyleBackColor = true;
+            // 
+            // SelectImage
+            // 
+            this.SelectImage.Location = new System.Drawing.Point(6, 76);
+            this.SelectImage.Name = "SelectImage";
+            this.SelectImage.Size = new System.Drawing.Size(104, 27);
+            this.SelectImage.TabIndex = 8;
+            this.SelectImage.Text = "Select Image";
+            this.SelectImage.UseVisualStyleBackColor = true;
+            this.SelectImage.Click += new System.EventHandler(this.btnSelectImage_Click);
             // 
             // btnSend
             // 
@@ -89,12 +103,12 @@
             this.txtMessage.Location = new System.Drawing.Point(6, 21);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(486, 81);
+            this.txtMessage.Size = new System.Drawing.Size(486, 49);
             this.txtMessage.TabIndex = 0;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(521, 67);
+            this.btnExit.Location = new System.Drawing.Point(521, 50);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
             this.btnExit.TabIndex = 7;
@@ -150,11 +164,21 @@
             this.txtUsername.Size = new System.Drawing.Size(100, 22);
             this.txtUsername.TabIndex = 13;
             // 
-            // frmClient
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 113);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(590, 161);
+            this.flowLayoutPanel1.TabIndex = 14;
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 422);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.txtServerPort);
@@ -162,9 +186,8 @@
             this.Controls.Add(this.lblServerPort);
             this.Controls.Add(this.lblServerIP);
             this.Controls.Add(this.grbMessage);
-            this.Controls.Add(this.lstChatBox);
             this.Controls.Add(this.btnConnect);
-            this.Name = "frmClient";
+            this.Name = "Form1";
             this.Text = "TCP Client";
             this.grbMessage.ResumeLayout(false);
             this.grbMessage.PerformLayout();
@@ -175,7 +198,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.ListBox lstChatBox;
         private System.Windows.Forms.GroupBox grbMessage;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessage;
@@ -186,6 +208,9 @@
         private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Button SelectImage;
+        private System.Windows.Forms.Button Emoji;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
