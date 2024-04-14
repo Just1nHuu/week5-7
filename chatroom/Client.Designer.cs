@@ -47,9 +47,10 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(536, 40);
+            this.btnConnect.Location = new System.Drawing.Point(402, 32);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.Size = new System.Drawing.Size(56, 19);
             this.btnConnect.TabIndex = 2;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -62,27 +63,31 @@
             this.grbMessage.Controls.Add(this.btnSend);
             this.grbMessage.Controls.Add(this.txtMessage);
             this.grbMessage.Controls.Add(this.btnExit);
-            this.grbMessage.Location = new System.Drawing.Point(15, 306);
+            this.grbMessage.Location = new System.Drawing.Point(11, 249);
+            this.grbMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grbMessage.Name = "grbMessage";
-            this.grbMessage.Size = new System.Drawing.Size(618, 109);
+            this.grbMessage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grbMessage.Size = new System.Drawing.Size(464, 89);
             this.grbMessage.TabIndex = 6;
             this.grbMessage.TabStop = false;
             this.grbMessage.Text = "Message";
             // 
             // Emoji
             // 
-            this.Emoji.Location = new System.Drawing.Point(116, 77);
+            this.Emoji.Location = new System.Drawing.Point(87, 63);
+            this.Emoji.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Emoji.Name = "Emoji";
-            this.Emoji.Size = new System.Drawing.Size(104, 27);
+            this.Emoji.Size = new System.Drawing.Size(78, 22);
             this.Emoji.TabIndex = 8;
             this.Emoji.Text = "Emoji";
             this.Emoji.UseVisualStyleBackColor = true;
             // 
             // SelectImage
             // 
-            this.SelectImage.Location = new System.Drawing.Point(6, 76);
+            this.SelectImage.Location = new System.Drawing.Point(4, 62);
+            this.SelectImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SelectImage.Name = "SelectImage";
-            this.SelectImage.Size = new System.Drawing.Size(104, 27);
+            this.SelectImage.Size = new System.Drawing.Size(78, 22);
             this.SelectImage.TabIndex = 8;
             this.SelectImage.Text = "Select Image";
             this.SelectImage.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(521, 21);
+            this.btnSend.Location = new System.Drawing.Point(391, 17);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.Size = new System.Drawing.Size(56, 19);
             this.btnSend.TabIndex = 1;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -100,17 +106,19 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(6, 21);
+            this.txtMessage.Location = new System.Drawing.Point(4, 17);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(486, 49);
+            this.txtMessage.Size = new System.Drawing.Size(366, 41);
             this.txtMessage.TabIndex = 0;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(521, 50);
+            this.btnExit.Location = new System.Drawing.Point(391, 41);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(56, 19);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -119,65 +127,73 @@
             // lblServerIP
             // 
             this.lblServerIP.AutoSize = true;
-            this.lblServerIP.Location = new System.Drawing.Point(12, 18);
+            this.lblServerIP.Location = new System.Drawing.Point(9, 15);
+            this.lblServerIP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblServerIP.Name = "lblServerIP";
-            this.lblServerIP.Size = new System.Drawing.Size(62, 16);
+            this.lblServerIP.Size = new System.Drawing.Size(51, 13);
             this.lblServerIP.TabIndex = 8;
             this.lblServerIP.Text = "Server IP";
             // 
             // lblServerPort
             // 
             this.lblServerPort.AutoSize = true;
-            this.lblServerPort.Location = new System.Drawing.Point(12, 66);
+            this.lblServerPort.Location = new System.Drawing.Point(9, 54);
+            this.lblServerPort.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblServerPort.Name = "lblServerPort";
-            this.lblServerPort.Size = new System.Drawing.Size(74, 16);
+            this.lblServerPort.Size = new System.Drawing.Size(60, 13);
             this.lblServerPort.TabIndex = 9;
             this.lblServerPort.Text = "Server Port";
             // 
             // txtServerIP
             // 
-            this.txtServerIP.Location = new System.Drawing.Point(112, 15);
+            this.txtServerIP.Location = new System.Drawing.Point(84, 12);
+            this.txtServerIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtServerIP.Name = "txtServerIP";
-            this.txtServerIP.Size = new System.Drawing.Size(100, 22);
+            this.txtServerIP.Size = new System.Drawing.Size(76, 20);
             this.txtServerIP.TabIndex = 10;
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Location = new System.Drawing.Point(112, 60);
+            this.txtServerPort.Location = new System.Drawing.Point(84, 49);
+            this.txtServerPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtServerPort.Name = "txtServerPort";
-            this.txtServerPort.Size = new System.Drawing.Size(100, 22);
+            this.txtServerPort.Size = new System.Drawing.Size(76, 20);
             this.txtServerPort.TabIndex = 11;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(264, 47);
+            this.lblUsername.Location = new System.Drawing.Point(198, 38);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(70, 16);
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 12;
             this.lblUsername.Text = "Username";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(369, 41);
+            this.txtUsername.Location = new System.Drawing.Point(277, 33);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 22);
+            this.txtUsername.Size = new System.Drawing.Size(76, 20);
             this.txtUsername.TabIndex = 13;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(21, 113);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(16, 92);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(590, 161);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(442, 153);
             this.flowLayoutPanel1.TabIndex = 14;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 422);
+            this.ClientSize = new System.Drawing.Size(490, 343);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.lblUsername);
@@ -187,6 +203,7 @@
             this.Controls.Add(this.lblServerIP);
             this.Controls.Add(this.grbMessage);
             this.Controls.Add(this.btnConnect);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "TCP Client";
             this.grbMessage.ResumeLayout(false);

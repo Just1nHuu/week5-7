@@ -19,6 +19,7 @@ namespace chatroom
         public Form1()
         {
             InitializeComponent();
+            flowLayoutPanel1.AutoScroll = true;
         }
 
         private TcpClient tcpClient;
@@ -41,6 +42,8 @@ namespace chatroom
                     AutoSize = true
                 };
                 flowLayoutPanel1.Controls.Add(label);
+                flowLayoutPanel1.ScrollControlIntoView(label);
+
             }
         }
 
@@ -87,27 +90,44 @@ namespace chatroom
             NetworkStream net_stream = tcpClient.GetStream();
             if (selectedImage != null)
             {
+                byte[] typeBytes = new byte[1] { 1 }; // Image type
+                net_stream.Write(typeBytes, 0, typeBytes.Length); // Send the type first
+
                 MemoryStream ms = new MemoryStream();
                 selectedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                 byte[] imageBytes = ms.ToArray();
+
+                // Send the size of the image
+                byte[] imageSizeBytes = BitConverter.GetBytes(imageBytes.Length);
+                net_stream.Write(imageSizeBytes, 0, imageSizeBytes.Length);
+
+                // Send the image data
                 net_stream.Write(imageBytes, 0, imageBytes.Length);
+
                 PictureBox pictureBox = new PictureBox
                 {
                     Image = selectedImage,
-                    SizeMode = PictureBoxSizeMode.AutoSize
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Size = new Size(150, 150)
                 };
                 flowLayoutPanel1.Controls.Add(pictureBox);
+                flowLayoutPanel1.ScrollControlIntoView(pictureBox);
                 selectedImage = null;
             }
             else
             {
+                byte[] typeBytes = new byte[1] { 0 }; // Text type
+                net_stream.Write(typeBytes, 0, typeBytes.Length); // Send the type first
+
                 byte[] message = Encoding.UTF8.GetBytes(txtMessage.Text);
-                net_stream.Write(message, 0, message.Length);
+                net_stream.Write(message, 0, message.Length); // Then send the actual data
+
                 UpdateChatHistorySafeCall("Me", txtMessage.Text);
             }
             net_stream.Flush();
             txtMessage.Text = string.Empty;
         }
+
 
         private void Receive()
         {
@@ -117,24 +137,41 @@ namespace chatroom
             {
                 while (connecting && tcpClient.Connected)
                 {
-                    int byte_count = net_stream.Read(data, 0, data.Length);
-                    if (IsImageData(data, byte_count))
+                    // Read the type of the message
+                    byte[] typeBytes = new byte[1];
+                    net_stream.Read(typeBytes, 0, typeBytes.Length);
+                    byte type = typeBytes[0];
+
+                    if (type == 1) // Image message
                     {
-                        MemoryStream ms = new MemoryStream(data, 0, byte_count);
+                        // Read the size of the image
+                        byte[] imageSizeBytes = new byte[4]; // Assuming the size is sent as an Int32
+                        net_stream.Read(imageSizeBytes, 0, imageSizeBytes.Length);
+                        int imageSize = BitConverter.ToInt32(imageSizeBytes, 0);
+
+                        // Read the image data
+                        byte[] imageData = new byte[imageSize];
+                        net_stream.Read(imageData, 0, imageData.Length);
+
+                        MemoryStream ms = new MemoryStream(imageData, 0, imageData.Length);
                         Image image = Image.FromStream(ms);
                         PictureBox pictureBox = new PictureBox
                         {
                             Image = image,
-                            SizeMode = PictureBoxSizeMode.AutoSize
+                            SizeMode = PictureBoxSizeMode.StretchImage,
+                            Size = new Size(150, 150)
                         };
                         flowLayoutPanel1.Controls.Add(pictureBox);
+                        flowLayoutPanel1.ScrollControlIntoView(pictureBox);
                     }
-                    else
+                    else // Text message
                     {
+                        int byte_count = net_stream.Read(data, 0, data.Length);
                         string message = Encoding.UTF8.GetString(data, 0, byte_count);
                         UpdateChatHistorySafeCall(null, message);
                     }
-                    if (byte_count == 0)
+
+                    if (data.Length == 0)
                     {
                         connecting = false;
                     }
@@ -145,6 +182,7 @@ namespace chatroom
                 tcpClient.Close();
             }
         }
+
 
         private bool IsImageData(byte[] data, int byteCount)
         {
