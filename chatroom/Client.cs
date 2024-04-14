@@ -25,6 +25,23 @@ namespace chatroom
         private bool connecting = true;
         private delegate void SafeCallDelegate(string username, string data);
 
+        private Dictionary<string, string> emojis = new Dictionary<string, string>
+        {
+            { ":)", "\U0001F600" },
+            { ":(", "\U0001F61E" },
+            { "<3", "\U00002764" }
+            // Thêm các emoji khác vào đây
+        };
+
+        private string ReplaceEmojis(string message)
+        {
+            foreach (var emoji in emojis)
+            {
+                message = message.Replace(emoji.Key, emoji.Value);
+            }
+            return message;
+        }
+
         private void UpdateChatHistorySafeCall(string username, string data)
         {
             if (lstChatBox.InvokeRequired)
@@ -96,6 +113,7 @@ namespace chatroom
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            string messageWithEmojis = ReplaceEmojis(txtMessage.Text); // Thay thế emojis
             NetworkStream net_stream = tcpClient.GetStream();
             byte[] message = Encoding.UTF8.GetBytes(txtMessage.Text);
             net_stream.Write(message, 0, message.Length);

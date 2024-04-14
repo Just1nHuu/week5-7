@@ -26,8 +26,26 @@ namespace chatroom
         private bool listening = true;
         private delegate void SafeCallDelegate(string username, string message);
 
+        private Dictionary<string, string> emojis = new Dictionary<string, string>
+        {
+            { ":)", "\U0001F600" },
+            { ":(", "\U0001F61E" },
+            { "<3", "\U00002764" }
+            // Thêm các emoji khác vào đây
+        };
+
+        private string ReplaceEmojis(string message)
+        {
+            foreach (var emoji in emojis)
+            {
+                message = message.Replace(emoji.Key, emoji.Value);
+            }
+            return message;
+        }
+
         private void UpdateChatHistorySafeCall(string username, string message)
         {
+            message = ReplaceEmojis(message); // Thay thế emojis
             if (lstChatBox.InvokeRequired)
             {
                 var method = new SafeCallDelegate(UpdateChatHistorySafeCall);
@@ -84,6 +102,7 @@ namespace chatroom
 
         private void Broadcast(string username, string message, TcpClient except_this_client)
         {
+            message = ReplaceEmojis(message); // Thay thế emojis
             byte[] flooding_message = Encoding.UTF8.GetBytes($"{username}: {message}");
             foreach (TcpClient client in dic_clients.Values)
             {
@@ -108,6 +127,7 @@ namespace chatroom
                 {
                     int byte_count = net_stream.Read(data, 0, data.Length);
                     string message = Encoding.UTF8.GetString(data, 0, byte_count);
+                    message = ReplaceEmojis(message); // Thay thế emojis
                     Broadcast(username, message, client);
                     UpdateChatHistorySafeCall(username, message);
                     if (byte_count == 0)
